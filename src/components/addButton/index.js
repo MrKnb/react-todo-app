@@ -1,10 +1,13 @@
 import React from 'react';
 
+import Styles from './index.module.css';
+
 function AddButton() {
   return (
-    <div className="button">
-      <p> Untitled Category..</p>
-    </div>
+    <button className={Styles.addButton}>
+      <i class="material-icons">add_circle</i>
+      <p>new category</p>
+    </button>
   );
 }
 
