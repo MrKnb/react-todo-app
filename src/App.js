@@ -1,4 +1,6 @@
 import React from 'react';
+
+import AddButton from './components/addButton';
 import './App.css';
 import 'reset-css';
 
@@ -8,6 +10,9 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <div className="container">
+        <AddButton />
+      </div>
     </div>
   );
 }
