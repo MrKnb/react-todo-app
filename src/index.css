@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;600;700&display=swap');
+
+:root {
+  --green: #4c856d;
+  --salmon: #e49273;
+  --black: #484041;
+  --white: #fefefe;
+}
+
+body,
+html {
+  background-color: var(--white);
+  height: 100%;
+}
