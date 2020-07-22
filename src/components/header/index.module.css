@@ -10,3 +10,11 @@
   padding-top: 100px;
   /* font-family: Muli; */
 }
+
+.backButton {
+  color: var(--white);
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
