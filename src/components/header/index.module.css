@@ -18,3 +18,8 @@
   align-items: center;
   flex-direction: row;
 }
+
+.Link {
+  text-decoration: none;
+  color: inherit;
+}

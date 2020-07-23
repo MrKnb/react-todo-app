@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Categories from './components/categories';
 import Category from './components/category';
@@ -13,12 +13,10 @@ function App() {
     <div className="App">
       <Header />
       <div className="container">
-        <Router>
-          <Switch>
-            <Route path="/" exact component={Categories} />
-            <Route path="/category/:id" component={Category} />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route path="/" exact component={Categories} />
+          <Route path="/category/:id" component={Category} />
+        </Switch>
       </div>
     </div>
   );
