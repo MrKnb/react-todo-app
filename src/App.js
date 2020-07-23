@@ -1,6 +1,8 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import AddButton from './components/addButton';
+import Categories from './components/categories';
+import Category from './components/category';
 import './App.css';
 import 'reset-css';
 
@@ -11,7 +13,12 @@ function App() {
     <div className="App">
       <Header />
       <div className="container">
-        <AddButton />
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Categories} />
+            <Route path="/category/:id" component={Category} />
+          </Switch>
+        </Router>
       </div>
     </div>
   );
