@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Todo from '../todo';
 import AddNew from '../addButton';
 
 const data = [
@@ -40,7 +41,7 @@ function Category({ match }) {
       <ul>
         {matchedCategory.todos.map((todo, index) => {
           console.log(index);
-          return <li key={matchedCategory.todos[index]}>{todo.title}</li>;
+          return <Todo key={index} title={todo.title} />;
         })}
       </ul>
     </div>
