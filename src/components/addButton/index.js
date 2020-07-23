@@ -2,11 +2,11 @@ import React from 'react';
 
 import Styles from './index.module.css';
 
-function AddButton() {
+function AddButton(props) {
   return (
     <button className={Styles.addButton}>
       <i className="material-icons">add_circle</i>
-      <p>new category</p>
+      <p>{props.text}</p>
     </button>
   );
 }

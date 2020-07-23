@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Todo from '../todo';
 import AddNew from '../addButton';
+import Styles from './index.module.css';
 
 const data = [
   {
@@ -37,13 +38,16 @@ function Category({ match }) {
   )[0];
   return (
     <div>
-      <p>{matchedCategory.title}</p>
+      <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
       <ul>
         {matchedCategory.todos.map((todo, index) => {
           console.log(index);
           return <Todo key={index} title={todo.title} />;
         })}
       </ul>
+      <div className={Styles.addButton}>
+        <AddNew text="new todo" />
+      </div>
     </div>
   );
 }
