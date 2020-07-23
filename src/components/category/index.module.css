@@ -1,0 +1,11 @@
+.categoryName {
+  font-size: 2rem;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.addButton {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}

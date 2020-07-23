@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AddNew from '../addButton';
+import Styles from './index.module.css';
 
 const data = [
   {
@@ -24,11 +26,15 @@ function Categories() {
 
   return (
     <div>
+      <h1 className={Styles.categoryHeading}>Categories</h1>
       {categories.map((category) => (
         <h1 key={category.id}>
           <Link to={`/category/${category.id}`}>{category.title}</Link>
         </h1>
       ))}
+      <div className={Styles.addButton}>
+        <AddNew text="new category" />
+      </div>
     </div>
   );
 }
