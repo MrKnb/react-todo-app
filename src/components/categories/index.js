@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddNew from '../addButton';
 import Styles from './index.module.css';
-import Form from './addItemForm'
+import Form from '../form';
 
 const data = [
   {
