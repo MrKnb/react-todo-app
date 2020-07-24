@@ -11,7 +11,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1",
-    "reset-css": "^5.0.1"
+    "reset-css": "^5.0.1",
+    "uuidv4": "^6.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
