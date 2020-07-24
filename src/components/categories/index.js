@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddNew from '../addButton';
 import Styles from './index.module.css';
+import Form from '../form';
 
 const data = [
   {
@@ -23,6 +24,9 @@ const data = [
 
 function Categories() {
   const [categories, setCategories] = useState(data);
+  const [showForm, setShowForm] = useState(false);
+
+  const displayForm = () => setShowForm(true);
 
   return (
     <div className="categories">
@@ -32,8 +36,10 @@ function Categories() {
           <Link to={`/category/${category.id}`}>{category.title}</Link>
         </h1>
       ))}
+      
       <div className={Styles.addButton}>
-        <AddNew text="new category" />
+        {showForm ? <Form /> : null}
+        <AddNew text="new category" showForm={displayForm}/>
       </div>
     </div>
   );
