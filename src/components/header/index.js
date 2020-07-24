@@ -7,7 +7,7 @@ import BackToPrevious from './BackToPrevious';
 function Header(props) {
   return (
     <header className={Styles.Header}>
-      {props.path === '/' ? null : <BackToPrevious />}
+      {props.path === '/' || <BackToPrevious />}
       <p className={Styles.date}>{displayDate()}</p>
     </header>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { uuid } from 'uuidv4';
 
 import Todo from '../todo';
 import AddNew from '../addButton';
@@ -7,27 +8,27 @@ import Form from '../form';
 
 const data = [
   {
-    id: 12,
+    id: 30,
     title: 'category1',
     todos: [
-      { title: 'buy beer', isDone: false },
-      { title: 'buy pizza', isDone: false },
+      { id: uuid(), title: 'buy beer', isDone: false },
+      { id: uuid(), title: 'buy pizza', isDone: false },
     ],
   },
   {
-    id: 23,
+    id: 32,
     title: 'category2',
     todos: [
-      { title: 'buy beer', isDone: false },
-      { title: 'buy pizza', isDone: false },
+      { id: uuid(), title: 'buy beer', isDone: false },
+      { id: uuid(), title: 'buy pizza', isDone: false },
     ],
   },
   {
-    id: 53,
+    id: 34,
     title: 'category3',
     todos: [
-      { title: 'buy beer', isDone: false },
-      { title: 'buy pizza', isDone: false },
+      { id: uuid(), title: 'buy beer', isDone: false },
+      { id: uuid(), title: 'buy pizza', isDone: false },
     ],
   },
 ];
@@ -36,17 +37,30 @@ function CategoryTasks({ match }) {
   const [categories, setCategories] = useState(data);
   const [showForm, setShowForm] = useState(false);
   const matchedCategory = categories.filter(
-    (category) => category.id == match.params.id
+    (category) => category.id === +match.params.id
   )[0];
+
+  const deleteTodo = (id) => {
+    const updatedTodos = matchedCategory.todos.filter((todo) => todo.id !== id);
+    matchedCategory.todos = [...updatedTodos];
+    setCategories([...categories, matchedCategory]);
+    console.log(categories);
+  };
 
   const displayForm = () => setShowForm(true);
   return (
     <div className="category-tasks-container">
       <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
       <ul>
-        {matchedCategory.todos.map((todo, index) => {
-          console.log(index);
-          return <Todo key={index} title={todo.title} />;
+        {matchedCategory.todos.map((todo) => {
+          return (
+            <Todo
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
+              delete={deleteTodo}
+            />
+          );
         })}
       </ul>
       <div className={Styles.addButton}>

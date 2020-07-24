@@ -6,7 +6,7 @@ import Styles from './index.module.css';
 function Category(props) {
   return (
     <li className={Styles.singleCategory}>
-      <div onClick={() => console.log('done')}>
+      <div>
         <Link className={Styles.Link} to={`/category/${props.id}`}>
           {props.title}
         </Link>

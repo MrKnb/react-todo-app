@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import AddNew from '../addButton';
 import Styles from './index.module.css';
 
 function Todo(props) {
@@ -13,7 +12,9 @@ function Todo(props) {
       </div>
       <div className={Styles.icons}>
         <i className="material-icons">create</i>
-        <i className="material-icons">delete</i>
+        <i className="material-icons" onClick={() => props.delete(props.id)}>
+          delete
+        </i>
       </div>
     </li>
   );
