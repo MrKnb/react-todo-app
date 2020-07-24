@@ -1,0 +1,20 @@
+.categoryName {
+  font-size: 2rem;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.addButton {
+  position: relative;
+  bottom: -210px;
+  left: 0px;
+}
+
+.addItemForm {
+  height: 100px;
+  width: 250px;
+  background-color: blue;
+  position: fixed;
+  bottom: 60px;
+  left: 45px;
+}
