@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import Category from '../category';
 import AddNew from '../addButton';
@@ -8,17 +7,17 @@ import Form from '../form';
 
 const data = [
   {
-    id: 12,
+    id: 30,
     title: 'category1',
     todos: [],
   },
   {
-    id: 23,
+    id: 32,
     title: 'category2',
     todos: [],
   },
   {
-    id: 53,
+    id: 34,
     title: 'category3',
     todos: [],
   },
@@ -34,9 +33,6 @@ function Categories() {
     <div className="categories">
       <h1 className={Styles.categoryHeading}>Categories</h1>
       {categories.map((category) => (
-        // <h1 key={category.id}>
-        //   <Link to={`/category/${category.id}`}>{category.title}</Link>
-        // </h1>
         <Category key={category.id} id={category.id} title={category.title} />
       ))}
 
