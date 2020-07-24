@@ -1,59 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import Todo from '../todo';
-import AddNew from '../addButton';
 import Styles from './index.module.css';
-import Form from "../form";
 
-const data = [
-  {
-    id: 12,
-    title: 'category1',
-    todos: [
-      { title: 'buy beer', isDone: false },
-      { title: 'buy pizza', isDone: false },
-    ],
-  },
-  {
-    id: 23,
-    title: 'category2',
-    todos: [
-      { title: 'buy beer', isDone: false },
-      { title: 'buy pizza', isDone: false },
-    ],
-  },
-  {
-    id: 53,
-    title: 'category3',
-    todos: [
-      { title: 'buy beer', isDone: false },
-      { title: 'buy pizza', isDone: false },
-    ],
-  },
-];
-
-function Category({ match }) {
-  const [categories, setCategories] = useState(data);
-  const [showForm, setShowForm] = useState(false);
-  const matchedCategory = categories.filter(
-    (category) => category.id == match.params.id
-  )[0];
-  
-  const displayForm = () => setShowForm(true);
+function Category(props) {
   return (
-    <div className="category-container">
-      <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
-      <ul>
-        {matchedCategory.todos.map((todo, index) => {
-          console.log(index);
-          return <Todo key={index} title={todo.title} />;
-        })}
-      </ul>
-      <div className={Styles.addButton}>
-        {showForm ? <Form /> : null}
-        <AddNew text="new todo" showForm={displayForm} />
+    <li className={Styles.singleCategory}>
+      <div onClick={() => console.log('done')}>
+        <Link className={Styles.Link} to={`/category/${props.id}`}>
+          {props.title}
+        </Link>
       </div>
-    </div>
+      <div className={Styles.icons}>
+        <i className="material-icons">create</i>
+        <i className="material-icons">delete</i>
+      </div>
+    </li>
   );
 }
 

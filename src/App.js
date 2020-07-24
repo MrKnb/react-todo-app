@@ -3,7 +3,7 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import Categories from './components/categories';
-import Category from './components/category';
+import CategoryTasks from './components/categoryTasks';
 import './App.css';
 import 'reset-css';
 
@@ -30,7 +30,7 @@ function App() {
                   <Switch>
                     <Route path="/" exact component={Categories} />
 
-                    <Route path="/category/:id" component={Category} />
+                    <Route path="/category/:id" component={CategoryTasks} />
                   </Switch>
                 </div>
               </div>
