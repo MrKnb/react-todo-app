@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Styles from './index.module.css';
 
 function AddItemForm() {
-  return <input type="text" placeholder="new item" />
+  return <input className={Styles.addItemForm} type="text" placeholder="new item" />
 }
 /*I need to create an onclick trigger for the AddButton to show the add form.
 Thoughts: work with "clicked state", initial state = false. Then, if clicked = true show

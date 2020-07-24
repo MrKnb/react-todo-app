@@ -9,11 +9,3 @@
   cursor: pointer;
 }
 
-.addItemForm {
-  height: 100px;
-  width: 250px;
-  background-color: blue;
-  position: fixed;
-  bottom: 60px;
-  left: 45px;
-}

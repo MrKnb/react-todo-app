@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Todo from '../todo';
 import AddNew from '../addButton';
 import Styles from './index.module.css';
-import Form from "../categories/addItemForm";
+import Form from "../form";
 
 const data = [
   {
