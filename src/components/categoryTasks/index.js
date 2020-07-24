@@ -39,6 +39,11 @@ function CategoryTasks({ match }) {
     (category) => category.id == match.params.id
   )[0];
 
+  const deleteTodo = (id) => {
+    const updatedTodos = matchedCategory.todos.filter((todo) => todo.id !== id);
+    console.log(updatedTodos);
+  };
+
   const displayForm = () => setShowForm(true);
   return (
     <div className="category-tasks-container">
@@ -46,7 +51,14 @@ function CategoryTasks({ match }) {
       <ul>
         {matchedCategory.todos.map((todo, index) => {
           console.log(index);
-          return <Todo key={index} title={todo.title} />;
+          return (
+            <Todo
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
+              delete={deleteTodo}
+            />
+          );
         })}
       </ul>
       <div className={Styles.addButton}>
