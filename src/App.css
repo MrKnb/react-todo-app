@@ -14,7 +14,25 @@
 }
 
 .component-container {
-  height: 54vh;
+  height: 55vh;
   padding: 15px 25px 15px 15px;
   overflow: auto;
+  overflow-x: hidden;
+}
+
+.route-enter {
+  transform: translateX(100%);
+}
+.route-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.route-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.route-exit-active {
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 300ms transform 300ms;
 }

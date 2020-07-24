@@ -37,7 +37,7 @@ function Category({ match }) {
     (category) => category.id == match.params.id
   )[0];
   return (
-    <div>
+    <div className="category-container">
       <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
       <ul>
         {matchedCategory.todos.map((todo, index) => {

@@ -25,7 +25,7 @@ function Categories() {
   const [categories, setCategories] = useState(data);
 
   return (
-    <div>
+    <div className="categories">
       <h1 className={Styles.categoryHeading}>Categories</h1>
       {categories.map((category) => (
         <h1 key={category.id}>
