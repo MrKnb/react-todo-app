@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { uuid } from 'uuidv4';
 
 import Todo from '../todo';
@@ -6,51 +6,37 @@ import AddNew from '../addButton';
 import Styles from './index.module.css';
 import Form from '../form';
 
-const data = [
+const defaultCategory = [
   {
-    id: 30,
-    title: 'category1',
-    todos: [
-      { id: uuid(), title: 'buy beer', isDone: false },
-      { id: uuid(), title: 'buy pizza', isDone: false },
-    ],
-  },
-  {
-    id: 32,
-    title: 'category2',
-    todos: [
-      { id: uuid(), title: 'buy beer', isDone: false },
-      { id: uuid(), title: 'buy pizza', isDone: false },
-    ],
-  },
-  {
-    id: 34,
-    title: 'category3',
-    todos: [
-      { id: uuid(), title: 'buy beer', isDone: false },
-      { id: uuid(), title: 'buy pizza', isDone: false },
-    ],
+    id: uuid(),
+    title: 'default tasks',
+    todos: [],
   },
 ];
 
 function CategoryTasks({ match }) {
-  const [categories, setCategories] = useState(data);
+  const [categories, setCategories] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  const matchedCategory = categories.filter(
-    (category) => category.id === +match.params.id
-  )[0];
+  useEffect(() => {
+    setCategories(JSON.parse(localStorage.getItem('Categories')));
+  }, []);
+
+  const matchedCategory =
+    categories.filter((category) => category.id === +match.params.id)[0] ||
+    defaultCategory[0];
 
   const deleteTodo = (id) => {
     const updatedTodos = matchedCategory.todos.filter((todo) => todo.id !== id);
     matchedCategory.todos = [...updatedTodos];
-    setCategories([...categories, matchedCategory]);
+    setCategories([...categories]);
+    localStorage.setItem('Categories', JSON.stringify(categories));
   };
 
   const addTodo = (title) => {
     const newTodo = { id: uuid(), title: title, isDone: false };
     matchedCategory.todos = [...matchedCategory.todos, newTodo];
-    setCategories([...categories, matchedCategory]);
+    localStorage.setItem('Categories', JSON.stringify(categories));
   };
 
   const displayForm = () => setShowForm(true);
@@ -59,18 +45,23 @@ function CategoryTasks({ match }) {
   return (
     <div className="category-tasks-container">
       <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
-      <ul>
-        {matchedCategory.todos.map((todo) => {
-          return (
-            <Todo
-              key={todo.id}
-              id={todo.id}
-              title={todo.title}
-              delete={deleteTodo}
-            />
-          );
-        })}
-      </ul>
+
+      {matchedCategory.todos.length ? (
+        <ul>
+          {matchedCategory.todos.map((todo) => {
+            return (
+              <Todo
+                key={todo.id}
+                id={todo.id}
+                title={todo.title}
+                delete={deleteTodo}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <p>no todos</p>
+      )}
       <div className={Styles.addButton}>
         {showForm ? <Form addItem={addTodo} hideForm={hideForm} /> : null}
         <AddNew text="new todo" showForm={displayForm} />
