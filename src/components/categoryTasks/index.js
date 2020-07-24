@@ -36,6 +36,7 @@ const data = [
 function CategoryTasks({ match }) {
   const [categories, setCategories] = useState(data);
   const [showForm, setShowForm] = useState(false);
+
   const matchedCategory = categories.filter(
     (category) => category.id === +match.params.id
   )[0];
@@ -44,10 +45,17 @@ function CategoryTasks({ match }) {
     const updatedTodos = matchedCategory.todos.filter((todo) => todo.id !== id);
     matchedCategory.todos = [...updatedTodos];
     setCategories([...categories, matchedCategory]);
-    console.log(categories);
+  };
+
+  const addTodo = (title) => {
+    const newTodo = { id: uuid(), title: title, isDone: false };
+    matchedCategory.todos = [...matchedCategory.todos, newTodo];
+    setCategories([...categories, matchedCategory]);
   };
 
   const displayForm = () => setShowForm(true);
+  const hideForm = () => setShowForm(false);
+
   return (
     <div className="category-tasks-container">
       <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
@@ -64,7 +72,7 @@ function CategoryTasks({ match }) {
         })}
       </ul>
       <div className={Styles.addButton}>
-        {showForm ? <Form /> : null}
+        {showForm ? <Form addItem={addTodo} hideForm={hideForm} /> : null}
         <AddNew text="new todo" showForm={displayForm} />
       </div>
     </div>
