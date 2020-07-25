@@ -27,6 +27,14 @@ function Categories() {
     localStorage.setItem('Categories', JSON.stringify(updatedCategories));
   };
 
+  const deleteCategory = (id) => {
+    const updatedCategories = categories.filter(
+      (category) => category.id !== id
+    );
+    setCategories(updatedCategories);
+    localStorage.setItem('Categories', JSON.stringify(updatedCategories));
+  };
+
   const hideForm = () => setShowForm(false);
   const displayForm = () => setShowForm(true);
 
@@ -35,7 +43,12 @@ function Categories() {
       <h1 className={Styles.categoryHeading}>Categories</h1>
       {categories.length > 0 ? (
         categories.map((category) => (
-          <Category key={category.id} id={category.id} title={category.title} />
+          <Category
+            key={category.id}
+            id={category.id}
+            title={category.title}
+            delete={deleteCategory}
+          />
         ))
       ) : (
         <p>no categories</p>

@@ -6,25 +6,14 @@ import AddNew from '../addButton';
 import Styles from './index.module.css';
 import Form from '../form';
 
-const defaultCategory = [
-  {
-    id: uuid(),
-    title: 'default tasks',
-    todos: [],
-  },
-];
-
 function CategoryTasks({ match }) {
-  const [categories, setCategories] = useState([]);
+  const loadedCategories = JSON.parse(localStorage.getItem('Categories'));
+  const [categories, setCategories] = useState(loadedCategories);
   const [showForm, setShowForm] = useState(false);
 
-  useEffect(() => {
-    setCategories(JSON.parse(localStorage.getItem('Categories')));
-  }, []);
-
-  const matchedCategory =
-    categories.filter((category) => category.id === +match.params.id)[0] ||
-    defaultCategory[0];
+  const matchedCategory = categories.filter(
+    (category) => category.id === match.params.id
+  )[0];
 
   const deleteTodo = (id) => {
     const updatedTodos = matchedCategory.todos.filter((todo) => todo.id !== id);
@@ -63,7 +52,7 @@ function CategoryTasks({ match }) {
         <p>no todos</p>
       )}
       <div className={Styles.addButton}>
-        {showForm ? <Form addItem={addTodo} hideForm={hideForm} /> : null}
+        {showForm === false || <Form addItem={addTodo} hideForm={hideForm} />}
         <AddNew text="new todo" showForm={displayForm} />
       </div>
     </div>

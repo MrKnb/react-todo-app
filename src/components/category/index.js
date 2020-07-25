@@ -13,7 +13,9 @@ function Category(props) {
       </div>
       <div className={Styles.icons}>
         <i className="material-icons">create</i>
-        <i className="material-icons">delete</i>
+        <i className="material-icons" onClick={() => props.delete(props.id)}>
+          delete
+        </i>
       </div>
     </li>
   );
