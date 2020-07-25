@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { uuid } from 'uuidv4';
 
 import Category from '../category';
@@ -35,25 +35,36 @@ function Categories() {
     localStorage.setItem('Categories', JSON.stringify(updatedCategories));
   };
 
+  const editCategory = (id, newValue) => {
+    const matchingCategory = categories.filter(
+      (category) => category.id === id
+    );
+    matchingCategory[0].title = newValue;
+    setCategories([...categories]);
+    localStorage.setItem('Categories', JSON.stringify(categories));
+  };
+
   const hideForm = () => setShowForm(false);
   const displayForm = () => setShowForm(true);
 
   return (
     <div className="categories">
       <h1 className={Styles.categoryHeading}>Categories</h1>
-      {categories.length > 0 ? (
-        categories.map((category) => (
-          <Category
-            key={category.id}
-            id={category.id}
-            title={category.title}
-            delete={deleteCategory}
-          />
-        ))
-      ) : (
-        <p>no categories</p>
-      )}
-
+      <ul className={Styles.list}>
+        {categories.length > 0 ? (
+          categories.map((category) => (
+            <Category
+              key={category.id}
+              id={category.id}
+              title={category.title}
+              delete={deleteCategory}
+              edit={editCategory}
+            />
+          ))
+        ) : (
+          <p>no categories</p>
+        )}
+      </ul>
       <div className={Styles.addButton}>
         {showForm ? <Form addItem={addCategory} hideForm={hideForm} /> : null}
         <AddNew text="new category" showForm={displayForm} />
