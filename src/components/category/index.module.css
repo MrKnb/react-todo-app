@@ -5,6 +5,9 @@
 }
 
 .Link {
+  display: inline-block;
   text-decoration: none;
   color: inherit;
+  max-width: 250px;
+  word-break: break-word;
 }

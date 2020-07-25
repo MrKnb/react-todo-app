@@ -10,3 +10,11 @@
   left: 0px;
 }
 
+.list {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.list li + li {
+  margin-top: 15px;
+}

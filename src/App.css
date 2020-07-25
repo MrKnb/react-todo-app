@@ -14,10 +14,7 @@
 }
 
 .component-container {
-  height: 55vh;
   padding: 15px 25px 15px 15px;
-  overflow: auto;
-  overflow-x: hidden;
 }
 
 .route-enter {
