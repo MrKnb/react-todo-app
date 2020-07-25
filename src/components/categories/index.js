@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { uuid } from 'uuidv4';
 
 import Category from '../category';
 import AddNew from '../addButton';
@@ -10,15 +11,29 @@ function Categories() {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    setCategories(JSON.parse(window.localStorage.getItem('Categories')));
+    if (localStorage.length) {
+      setCategories(JSON.parse(localStorage.getItem('Categories')));
+    }
   }, []);
 
+  const addCategory = (title) => {
+    const newCategory = {
+      id: uuid(),
+      title: title,
+      todos: [],
+    };
+    const updatedCategories = [...categories, newCategory];
+    setCategories(updatedCategories);
+    localStorage.setItem('Categories', JSON.stringify(updatedCategories));
+  };
+
+  const hideForm = () => setShowForm(false);
   const displayForm = () => setShowForm(true);
 
   return (
     <div className="categories">
       <h1 className={Styles.categoryHeading}>Categories</h1>
-      {categories ? (
+      {categories.length > 0 ? (
         categories.map((category) => (
           <Category key={category.id} id={category.id} title={category.title} />
         ))
@@ -27,7 +42,7 @@ function Categories() {
       )}
 
       <div className={Styles.addButton}>
-        {showForm ? <Form /> : null}
+        {showForm ? <Form addItem={addCategory} hideForm={hideForm} /> : null}
         <AddNew text="new category" showForm={displayForm} />
       </div>
     </div>
