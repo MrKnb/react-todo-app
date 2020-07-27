@@ -17,7 +17,7 @@ function AddItemForm({ addItem, hideForm }) {
   return (
     <>
       <form className={Styles.addItemForm} onSubmit={onSubmission}>
-        <input
+        <input 
           type="text"
           placeholder="new item"
           value={value}
