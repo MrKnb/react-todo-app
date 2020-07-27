@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Styles from './index.module.css';
+import Overlay from '../overlay';
 
 function AddItemForm({ addItem, hideForm }) {
   const [value, setValue] = useState('');
@@ -12,14 +13,17 @@ function AddItemForm({ addItem, hideForm }) {
   };
 
   return (
-    <form className={Styles.addItemForm} onSubmit={onSubmission}>
-      <input
-        type="text"
-        placeholder="new item"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-    </form>
+    <>
+      <form className={Styles.addItemForm} onSubmit={onSubmission}>
+        <input
+          type="text"
+          placeholder="new item"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </form>
+      <Overlay hide={hideForm} onSubmission={onSubmission} />
+    </>
   );
 }
 
