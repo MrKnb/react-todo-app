@@ -9,7 +9,8 @@
 }
 
 .doneButton {
-  background-color: red;
+  background-color: transparent;
+  outline: none;
   border: none;
   box-sizing: border-box;
   position: fixed;
