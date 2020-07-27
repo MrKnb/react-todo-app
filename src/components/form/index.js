@@ -7,9 +7,11 @@ function AddItemForm({ addItem, hideForm }) {
 
   const onSubmission = (event) => {
     event.preventDefault();
-    addItem(value);
-    setValue('');
-    hideForm();
+    if (value.trim()) {
+      addItem(value);
+      setValue('');
+      hideForm();
+    }
   };
 
   return (
