@@ -28,6 +28,15 @@ function CategoryTasks({ match }) {
     localStorage.setItem('Categories', JSON.stringify(categories));
   };
 
+  const editTodo = (id, newValue) => {
+    const matchingTodo = matchedCategory.todos.filter(
+      (todo) => todo.id === id
+    )[0];
+    matchingTodo.title = newValue;
+    setCategories([...categories]);
+    localStorage.setItem('Categories', JSON.stringify(categories));
+  };
+
   const toggleDone = (id) => {
     const matchedTodo = matchedCategory.todos.filter(
       (todo) => todo.id === id
@@ -54,6 +63,7 @@ function CategoryTasks({ match }) {
                 delete={deleteTodo}
                 status={todo.isDone}
                 toggleDone={toggleDone}
+                edit={editTodo}
               />
             );
           })}
