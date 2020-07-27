@@ -53,7 +53,7 @@ function CategoryTasks({ match }) {
       <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
 
       {matchedCategory.todos.length ? (
-        <ul>
+        <ul className={Styles.list}>
           {matchedCategory.todos.map((todo) => {
             return (
               <Todo
@@ -69,8 +69,8 @@ function CategoryTasks({ match }) {
           })}
         </ul>
       ) : (
-        <p>no todos</p>
-      )}
+          <p>no todos</p>
+        )}
       <div className={Styles.addButton}>
         {showForm === false || <Form addItem={addTodo} hideForm={hideForm} />}
         <AddNew text="new todo" showForm={displayForm} />

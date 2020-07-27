@@ -18,3 +18,7 @@
   bottom: 60px;
   left: 45px;
 }
+
+.list li + li {
+  margin-top: 15px;
+}
