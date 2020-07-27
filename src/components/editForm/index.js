@@ -36,7 +36,7 @@ const EditForm = React.forwardRef((props, ref) => {
   };
 
   return (
-    <form className={Styles.addItemForm} onSubmit={onSubmission}>
+    <form className={Styles.editItemForm} onSubmit={onSubmission}>
       <input
         type="text"
         value={value}
