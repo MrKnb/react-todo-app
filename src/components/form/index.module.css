@@ -5,4 +5,5 @@
   position: fixed;
   bottom: 60px;
   left: 45px;
+  z-index: 99;
 }
