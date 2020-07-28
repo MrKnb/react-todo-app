@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Styles from './index.module.css';
@@ -6,8 +6,6 @@ import EditForm from '../editForm';
 
 function Category(props) {
   const [showEditForm, setShowEditForm] = useState(false);
-
-  const ref = React.createRef();
 
   const toggleForm = () => {
     setShowEditForm(!showEditForm);
@@ -35,7 +33,6 @@ function Category(props) {
           id={props.id}
           editItem={props.edit}
           hideForm={setShowEditForm}
-          ref={ref}
         />
       ) : null}
     </>

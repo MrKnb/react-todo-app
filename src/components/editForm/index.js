@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Styles from './index.module.css';
 
-// function EditForm(props) {
-//   const [value, setValue] = useState(props.value);
-
-//   const onSubmission = (event) => {
-//     event.preventDefault();
-//     props.editItem(props.id, value);
-//     props.hideForm();
-//   };
-
-//   return (
-//     <form className={Styles.addItemForm} onSubmit={onSubmission}>
-//       <input
-//         type="text"
-//         value={value}
-//         onChange={(e) => setValue(e.target.value)}
-//       />
-//     </form>
-//   );
-// }
-
-const EditForm = React.forwardRef((props, ref) => {
+function EditForm(props) {
   const [value, setValue] = useState(props.value);
 
+  const input = useRef();
+
   useEffect(() => {
-    ref.current.focus();
+    input.current.focus();
   }, []);
 
   const onSubmission = (event) => {
@@ -36,15 +18,19 @@ const EditForm = React.forwardRef((props, ref) => {
   };
 
   return (
-    <form className={Styles.editItemForm} onSubmit={onSubmission}>
+    <form
+      className={Styles.editItemForm}
+      style={{ border: `2.5px solid ${props.color}` }}
+      onSubmit={onSubmission}
+    >
       <input
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        ref={ref}
+        ref={input}
       />
     </form>
   );
-});
+}
 
 export default EditForm;

@@ -73,6 +73,7 @@ function CategoryTasks({ match, setHeaderColor }) {
                 status={todo.isDone}
                 toggleDone={toggleDone}
                 edit={editTodo}
+                themeColor={matchedCategory.theme}
               />
             );
           })}

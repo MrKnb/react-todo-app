@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import Categories from './components/categories';
@@ -10,18 +10,18 @@ import 'reset-css';
 import Header from './components/header';
 
 function App() {
-  const history = useHistory();
-  const [path, setPath] = useState('/');
+  const { pathname } = useLocation();
+  const [path, setPath] = useState(pathname);
   const [headerColor, setHeaderColor] = useState('');
 
   useEffect(() => {
-    return history.listen((location) => {
-      setPath(location.pathname);
-    });
-  }, [history]);
+    setPath(pathname);
+  }, [pathname]);
 
   useEffect(() => {
-    setHeaderColor('');
+    if (path === '/') {
+      setHeaderColor('');
+    }
   }, [path]);
 
   return (
