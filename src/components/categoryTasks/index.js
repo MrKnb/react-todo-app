@@ -19,6 +19,8 @@ function CategoryTasks({ match, setHeaderColor }) {
     (category) => category.id === match.params.id
   )[0];
 
+  setHeaderColor(matchedCategory.theme);
+
   const deleteTodo = (id) => {
     const updatedTodos = matchedCategory.todos.filter((todo) => todo.id !== id);
     matchedCategory.todos = [...updatedTodos];
