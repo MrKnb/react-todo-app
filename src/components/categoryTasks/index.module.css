@@ -19,6 +19,12 @@
   left: 45px;
 }
 
+.list {
+  height: 300px;
+  max-height: 300px;
+  overflow: auto;
+}
+
 .list li + li {
   margin-top: 15px;
 }

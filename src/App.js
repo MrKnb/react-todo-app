@@ -12,15 +12,21 @@ import Header from './components/header';
 function App() {
   const history = useHistory();
   const [path, setPath] = useState('/');
+  const [headerColor, setHeaderColor] = useState('');
 
   useEffect(() => {
     return history.listen((location) => {
       setPath(location.pathname);
     });
   }, [history]);
+
+  useEffect(() => {
+    setHeaderColor('');
+  }, [path]);
+
   return (
     <div className="App">
-      <Header path={path} />
+      <Header theme={headerColor} />
       <Route
         render={({ location }) => (
           <SwitchTransition mode="out-in">
@@ -30,7 +36,15 @@ function App() {
                   <Switch>
                     <Route path="/" exact component={Categories} />
 
-                    <Route path="/category/:id" component={CategoryTasks} />
+                    <Route
+                      path="/category/:id"
+                      render={(props) => (
+                        <CategoryTasks
+                          {...props}
+                          setHeaderColor={setHeaderColor}
+                        />
+                      )}
+                    />
                   </Switch>
                 </div>
               </div>

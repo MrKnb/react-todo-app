@@ -6,10 +6,14 @@ import AddNew from '../addButton';
 import Styles from './index.module.css';
 import Form from '../form';
 
-function CategoryTasks({ match }) {
+function CategoryTasks({ match, setHeaderColor }) {
   const loadedCategories = JSON.parse(localStorage.getItem('Categories'));
   const [categories, setCategories] = useState(loadedCategories);
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    setHeaderColor(matchedCategory.theme);
+  }, []);
 
   const matchedCategory = categories.filter(
     (category) => category.id === match.params.id
@@ -50,7 +54,12 @@ function CategoryTasks({ match }) {
 
   return (
     <div className="category-tasks-container">
-      <h1 className={Styles.categoryName}>{matchedCategory.title}</h1>
+      <h1
+        className={Styles.categoryName}
+        style={{ color: matchedCategory.theme }}
+      >
+        {matchedCategory.title}
+      </h1>
 
       {matchedCategory.todos.length ? (
         <ul className={Styles.list}>
@@ -69,11 +78,21 @@ function CategoryTasks({ match }) {
           })}
         </ul>
       ) : (
-          <p>no todos</p>
-        )}
+        <p>no todos</p>
+      )}
       <div className={Styles.addButton}>
-        {showForm === false || <Form addItem={addTodo} hideForm={hideForm} />}
-        <AddNew text="new todo" showForm={displayForm} />
+        {showForm === false || (
+          <Form
+            addItem={addTodo}
+            themeColor={matchedCategory.theme}
+            hideForm={hideForm}
+          />
+        )}
+        <AddNew
+          color={matchedCategory.theme}
+          text="new todo"
+          showForm={displayForm}
+        />
       </div>
     </div>
   );

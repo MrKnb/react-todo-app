@@ -1,23 +1,103 @@
 .addItemForm {
-  height: 100px;
+  box-sizing: border-box;
+  max-height: 150px;
   width: 90%;
   position: fixed;
   bottom: 70px;
   left: 25px;
   z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--green);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .addItemForm input {
-  color: var(--black);
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-color: var(--white);
   outline: none;
-  border: solid;
+  border: none;
   font-size: 2rem;
   padding: 5px;
   border-radius: 10px;
-  border-color: var(--green);
   border-width: 4px;
+}
+
+.colorpicker {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--green);
+  margin-bottom: 15px;
+}
+.colorpicker * + * {
+  margin-top: 5px;
+}
+
+.colors {
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.color {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+.color input {
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  z-index: 4;
+}
+
+.color .dot {
+  box-sizing: border-box;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 50%;
+  margin-top: -3px;
+  z-index: 1;
+}
+
+.color .dot::after {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  margin-top: -7px;
+  left: 50%;
+  margin-left: -7px;
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+
+  /* background-color: red; */
+}
+
+input[type='radio']:checked ~ .dot {
+  background-color: var(--white);
+}
+input[type='radio']:checked ~ .dot::after {
+  border: 2px solid var(--white);
 }

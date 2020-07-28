@@ -16,10 +16,11 @@ function Categories() {
     }
   }, []);
 
-  const addCategory = (title) => {
+  const addCategory = (title, color) => {
     const newCategory = {
       id: uuid(),
       title: title,
+      theme: color,
       todos: [],
     };
     const updatedCategories = [...categories, newCategory];
