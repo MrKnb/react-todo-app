@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import Categories from './components/categories';
@@ -10,17 +10,23 @@ import 'reset-css';
 import Header from './components/header';
 
 function App() {
-  const history = useHistory();
-  const [path, setPath] = useState('/');
+  const { pathname } = useLocation();
+  const [path, setPath] = useState(pathname);
+  const [headerColor, setHeaderColor] = useState('');
 
   useEffect(() => {
-    return history.listen((location) => {
-      setPath(location.pathname);
-    });
-  }, [history]);
+    setPath(pathname);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (path === '/') {
+      setHeaderColor('');
+    }
+  }, [path]);
+
   return (
     <div className="App">
-      <Header path={path} />
+      <Header theme={headerColor} />
       <Route
         render={({ location }) => (
           <SwitchTransition mode="out-in">
@@ -30,7 +36,15 @@ function App() {
                   <Switch>
                     <Route path="/" exact component={Categories} />
 
-                    <Route path="/category/:id" component={CategoryTasks} />
+                    <Route
+                      path="/category/:id"
+                      render={(props) => (
+                        <CategoryTasks
+                          {...props}
+                          setHeaderColor={setHeaderColor}
+                        />
+                      )}
+                    />
                   </Switch>
                 </div>
               </div>

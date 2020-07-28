@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { uuid } from 'uuidv4';
 
 import Category from '../category';
@@ -16,10 +16,11 @@ function Categories() {
     }
   }, []);
 
-  const addCategory = (title) => {
+  const addCategory = (title, color) => {
     const newCategory = {
       id: uuid(),
       title: title,
+      theme: color,
       todos: [],
     };
     const updatedCategories = [...categories, newCategory];

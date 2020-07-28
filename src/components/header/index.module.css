@@ -8,8 +8,7 @@
   flex-direction: column;
   color: var(--white);
   font-size: 1.5rem;
-  /* padding-top: 90px; */
-  /* font-family: Muli; */
+  transition: all 500ms ease;
 }
 
 .date {

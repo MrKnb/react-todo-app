@@ -1,5 +1,6 @@
 .App {
   font-family: 'Muli', sans-serif;
+  overflow: hidden;
 }
 
 .container {
@@ -18,6 +19,7 @@
 }
 
 .route-enter {
+  height: 100%;
   transform: translateX(100%);
 }
 .route-enter-active {
